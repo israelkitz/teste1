@@ -1,11 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 import { FinancialState, CATEGORIES } from '../types';
 
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getFinancialAdvice = async (data: FinancialState, query: string): Promise<string> => {
-  if (!apiKey) {
+  if (!process.env.API_KEY) {
     return "API Key is missing. Please configure process.env.API_KEY.";
   }
 
